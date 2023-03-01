@@ -2,10 +2,13 @@
   <div>
     <h3>Type a city name to search</h3>
     <GMapAutocomplete @place_changed="placeChanged" class="gmap-autocompolete"/>
+    <h4>You can also click a location on the map to view the weather forecast</h4>
+    <div>Please click the <strong>Show button</strong> after selecting the location from map</div>
 
-    <div>You can also click a location on the map to view the weather forecast</div>
-    <!-- TODO add click event -->
+    
+    <!-- TODO add click event --> 
     <GMapMap
+      @click="mapClicked"
       v-if="selectedPlace"
       class="gmap-class"
       :center="selectedPlace"
@@ -25,24 +28,30 @@
   height: 500px;
   width: 100%;
 }
+
 .gmap-autocompolete {
   width: 250px;
   margin: 10px auto;
 }
+
 h3 {
   margin: 40px 0 0;
 }
+
 ul {
   list-style-type: none;
   padding: 0;
 }
+
 li {
   display: inline-block;
   margin: 0 10px;
 }
+
 a {
   color: #42b983;
 }
+
 .vue-map-container {
   height: 500px;
   width: 100%;

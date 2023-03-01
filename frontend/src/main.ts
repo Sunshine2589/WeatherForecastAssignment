@@ -1,10 +1,13 @@
-import { createApp } from 'vue'
-import App from './App.vue'
-import router from './router'
-import store from './store'
-import VueGoogleMaps from '@fawmi/vue-google-maps';
-import WeatherService from './services/weather-service.service';
+
 import { setupAxiosInterceptors } from './shared/axios-interceptor';
+import WeatherService from './services/weather-service.service';
+import SharedDataService from './services/shared-data';
+import VueGoogleMaps from '@fawmi/vue-google-maps';
+import { createApp } from 'vue';
+import router from './router';
+import App from './App.vue';
+import store from './store';
+
 
 setupAxiosInterceptors(() => {
     console.log('Unauthenticated');
@@ -14,7 +17,11 @@ const app = createApp(App)
 
 const weatherService = new WeatherService();
 
+const sharedDataService = new SharedDataService();
+
+
 app.provide('weatherService', weatherService);
+app.provide('sharedDataService',sharedDataService);
 
 app.use(VueGoogleMaps, {
     load: {
